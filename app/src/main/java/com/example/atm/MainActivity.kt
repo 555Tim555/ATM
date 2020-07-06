@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == RC_LOGIN){//
+        if(requestCode == RC_LOGIN){
             if(resultCode ==Activity.RESULT_OK){
                 val userid = data?.getStringExtra("LOGIN_USERID")
                 val passwd = data?.getStringExtra("LOGIN_PASSWD")
