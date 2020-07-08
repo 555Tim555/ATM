@@ -1,6 +1,7 @@
 package com.example.atm
 
 import android.app.Activity
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,11 +14,17 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val userid:String? = getSharedPreferences("atm",Context.MODE_PRIVATE).getString("PREF_USERID","")
+        ed_userid.setText(userid)
     }
     fun login(view: View){
         val userid = ed_userid.text.toString()
         val passwd = ed_passwd.text.toString()
         if(userid == "jack" && passwd == "1234") {
+            getSharedPreferences("atm",Context.MODE_PRIVATE)
+                .edit()
+                .putString("PREF_USERID",userid)
+                .apply()
             Toast.makeText(this,"登入成功", Toast.LENGTH_LONG).show()
             intent.putExtra("LOGIN_USERID",userid)
             intent.putExtra("LOGIN_PASSWD",passwd)
